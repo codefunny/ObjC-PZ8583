@@ -76,6 +76,23 @@ ObjC-PZ8583是基于BerTlv和Oscar-ISO8583的基础上进行的iOS封装，底�
 
 ```
 
+#补充
+近日有不少人来问，35域问题，有些35域不是加密处理的，如果遇到该问题，请找到下面代码
+```
+static DL_ISO8583_TYPE fieldTypeArr[] = {
+/* ISO_N    */ {_unpack_iso_ASCHEX,_pack_iso_ASCHEX},
+/* ISO_NS   */ {_unpack_iso_BINARY,_pack_iso_BINARY},
+/* ISO_XN   */ {_unpack_iso_ASCHEX,_pack_iso_ASCHEX},
+/* ISO_A    */ {_unpack_iso_ASCII ,_pack_iso_ASCII },
+/* ISO_AN   */ {_unpack_iso_ASCII ,_pack_iso_ASCII },
+/* ISO_ANS  */ {_unpack_iso_ASCII ,_pack_iso_ASCII },
+/* ISO_ANSB */ {_unpack_iso_ASCII ,_pack_iso_ASCII },
+/* ISO_ANP  */ {_unpack_iso_ASCII ,_pack_iso_ASCII },
+/* ISO_B    */ {_unpack_iso_BINARY,_pack_iso_BINARY},
+/* ISO_Z    */ {_unpack_iso_BINARY,_pack_iso_BINARY},
+/* ISO_BMAP */ {_unpack_iso_BITMAP,_pack_iso_BITMAP} };
+```
+将/* ISO_Z    */ {_unpack_iso_BINARY,_pack_iso_BINARY},这一行改为 /* ISO_Z    */ {_unpack_iso_ASCHEX,_pack_iso_ASCHEX},即可。
 
 # License
 
